@@ -6,7 +6,7 @@
 /*   By: hjung <hjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 23:03:24 by hjung             #+#    #+#             */
-/*   Updated: 2021/02/07 16:37:58 by hjung            ###   ########.fr       */
+/*   Updated: 2021/02/07 16:41:49 by hjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ typedef struct		s_philo
 	int				cnt_eat;
 	long			last_meal;		// 마지막으로 식사시작 시간을 저장해 죽을때가 됐는지 판단하기 위함
 	pthread_mutex_t lock;			// 철학자가 각자 mutex 잠금을 할 수 있는 자물쇠를 하나씩 가진다고 생각하면 될듯
-	pthread_t		tid;			//thread_create 후 tid가 저장될 변수
-	t_table			*table;
+	pthread_t		tid;			// thread_create 후 tid가 저장될 변수
+	t_table			*table;			// 함수 매개변수로 table 안 들고 다녀도 philo 를 통해 테이블 참조할수 있게 하기 위함.
 }					t_philo;
 
 int					parse(t_table *table, char **argv);
