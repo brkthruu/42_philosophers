@@ -6,7 +6,7 @@
 /*   By: hjung <hjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 23:33:32 by hjung             #+#    #+#             */
-/*   Updated: 2021/02/07 00:30:01 by hjung            ###   ########.fr       */
+/*   Updated: 2021/02/07 01:46:20 by hjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int			parse(t_table *table, char **argv)
 	i = 1;
 	while (argv[i])
 	{
-		if (i == 1 && ((table->nbr_philos = parse_num(argv[i])) == -1))
+		if (i == 1 && (table->nbr_philos = parse_num(argv[i])) == -1)
 			return (1);
 		if (i == 2 && (table->time_to_die = parse_num(argv[i])) == -1)
 			return (1);

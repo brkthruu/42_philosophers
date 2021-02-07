@@ -6,7 +6,7 @@
 /*   By: hjung <hjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 23:03:24 by hjung             #+#    #+#             */
-/*   Updated: 2021/02/07 01:13:07 by hjung            ###   ########.fr       */
+/*   Updated: 2021/02/07 16:37:58 by hjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
+# include <sys/time.h>
 
 typedef struct		s_table
 {
@@ -23,9 +24,12 @@ typedef struct		s_table
 	int				time_to_die;
 	int				time_to_eat;
 	int				time_to_sleep;
-	int				nbr_eat;
+	int				nbr_eat;		
+	int				cnt_tot_eat;		// 철학자 모두가 밥을 먹은 횟수
+	int				is_dead;		// 죽은 철학자가 있는지 체크하는 변수
+	unsigned long	base_time;
 	pthread_mutex_t	*fork;
-
+	pthread_mutex_t	write_msg;		// 메시지 출력을 꼬이게 하지 않기 위해 mutex 사용
 }					t_table;
 
 typedef struct		s_philo
@@ -33,12 +37,19 @@ typedef struct		s_philo
 	int				nbr;
 	int				fork1;
 	int				fork2;
-	int				eat;
+	int				cnt_eat;
+	long			last_meal;		// 마지막으로 식사시작 시간을 저장해 죽을때가 됐는지 판단하기 위함
+	pthread_mutex_t lock;			// 철학자가 각자 mutex 잠금을 할 수 있는 자물쇠를 하나씩 가진다고 생각하면 될듯
+	pthread_t		tid;			//thread_create 후 tid가 저장될 변수
+	t_table			*table;
 }					t_philo;
 
-int		parse(t_table *table, char **argv);
-int		ft_atoi(const char *str);
+int					parse(t_table *table, char **argv);
+int					init_table(t_table *table, t_philo *philos);
 
-int		p_error(char *str);
+int					ft_atoi(const char *str);
+unsigned long		get_time(void);
+
+int					p_error(char *str);
 
 #endif
