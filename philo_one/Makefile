@@ -6,7 +6,7 @@
 #    By: hjung <hjung@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/07 00:06:15 by hjung             #+#    #+#              #
-#    Updated: 2021/02/08 15:31:28 by hjung            ###   ########.fr        #
+#    Updated: 2021/02/08 15:37:14 by hjung            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ SRCS =	main.c \
 		philo.c \
 		msg.c \
 		monitor_all_philos.c \
-		utils.c \
+		utils.c
 C_FLAG = -Wall -Wextra -Werror
 OBJS = ${SRCS:.c=.o}
 LIBS = -lpthread
@@ -27,7 +27,7 @@ LIBS = -lpthread
 	${CC} ${C_FLAG} -c $< -o ${<:.c=.o} -I ./incs/
 
 ${NAME}: ${OBJS}
-	$(CC) $(C_FLAG) $(OBJS) -o $(NAME) ${LIBS}
+	$(CC) $(C_FLAG) $(OBJS) -o $(NAME) ${LIBS} -g -fsanitize=address
 
 all: ${NAME}
 

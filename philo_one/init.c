@@ -6,7 +6,7 @@
 /*   By: hjung <hjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/07 16:06:56 by hjung             #+#    #+#             */
-/*   Updated: 2021/02/08 15:12:51 by hjung            ###   ########.fr       */
+/*   Updated: 2021/02/08 17:55:54 by hjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	init_philo(t_philo *philos)
 	int		i;
 
 	i = 0;
+	printf("here\n");
 	while (i < philos->table->nbr_philos)
 	{
 		philos[i].last_meal = get_time();
@@ -54,8 +55,11 @@ int			init_table(t_table *table, t_philo *philos)
 		philos[i].nbr = i;
 		philos[i].cnt_eat = 0;
 		assign_fork(&philos[i], i);
+		i++;
 	}
 	pthread_mutex_init(&table->write_msg, NULL);
+	pthread_mutex_init(&table->m_eat, NULL);
+	pthread_mutex_init(&table->m_dead, NULL);
 	table->tot_eat = 0;
 	table->is_dead = 0;
 	table->base_time = get_time();
