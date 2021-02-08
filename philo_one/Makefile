@@ -6,7 +6,7 @@
 #    By: hjung <hjung@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/07 00:06:15 by hjung             #+#    #+#              #
-#    Updated: 2021/02/07 00:06:49 by hjung            ###   ########.fr        #
+#    Updated: 2021/02/08 15:13:17 by hjung            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,8 +14,10 @@ CC = gcc
 NAME = philo_one
 SRCS =	main.c \
 		parse.c \
+		init.c \
+		philo.c \
 		msg.c \
-		utils.c
+		utils.c \
 C_FLAG = -Wall -Wextra -Werror
 OBJS = ${SRCS:.c=.o}
 LIBS = -lpthread

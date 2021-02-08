@@ -6,12 +6,18 @@
 /*   By: hjung <hjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 23:03:24 by hjung             #+#    #+#             */
-/*   Updated: 2021/02/07 16:41:49 by hjung            ###   ########.fr       */
+/*   Updated: 2021/02/08 15:13:55 by hjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_ONE_H
 # define PHILO_ONE_H
+
+# define TAKEN_FORK	0
+# define EATING		1
+# define SLEEPING	2
+# define THINKING	3
+# define DEAD		4
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -25,11 +31,14 @@ typedef struct		s_table
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				nbr_eat;		
-	int				cnt_tot_eat;		// 철학자 모두가 밥을 먹은 횟수
-	int				is_dead;		// 죽은 철학자가 있는지 체크하는 변수
+	int				tot_eat;		// 철학자 모두가 밥을 먹은 횟수. 5명이 모두 1번씩 먹으면 1증가
+	int				is_dead;			// 죽은 철학자가 있는지 체크하는 변수
 	unsigned long	base_time;
 	pthread_mutex_t	*fork;
 	pthread_mutex_t	write_msg;		// 메시지 출력을 꼬이게 하지 않기 위해 mutex 사용
+	pthread_mutex_t	m_eat;
+	pthread_mutex_t	m_dead;			// 철학자가 죽었을 때 상태를 변경하기 위해 philo 에서 이 테이블의 is_dead 변수값을 변경.
+									// is_dead 변수는 msg() 함수에서 매번 참조하므로 mutex_lock이 필요함
 }					t_table;
 
 typedef struct		s_philo
@@ -46,9 +55,14 @@ typedef struct		s_philo
 
 int					parse(t_table *table, char **argv);
 int					init_table(t_table *table, t_philo *philos);
+void				init_philo(t_philo *philos);
+void				*philo_act(void *phi);
+void				*philo_monitor(void *phi);
+int					eat(t_philo *philo);
 
 int					ft_atoi(const char *str);
 unsigned long		get_time(void);
+void				vsleep(unsigned long itime);
 
 int					p_error(char *str);
 

@@ -6,7 +6,7 @@
 /*   By: hjung <hjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 23:33:32 by hjung             #+#    #+#             */
-/*   Updated: 2021/02/07 01:46:20 by hjung            ###   ########.fr       */
+/*   Updated: 2021/02/08 15:09:44 by hjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int			parse(t_table *table, char **argv)
 {
 	int		i;
 
+	table->nbr_eat = -1;
 	i = 1;
 	while (argv[i])
 	{
