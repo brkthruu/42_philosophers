@@ -6,7 +6,7 @@
 /*   By: hjung <hjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 18:31:33 by hjung             #+#    #+#             */
-/*   Updated: 2021/02/08 15:30:34 by hjung            ###   ########.fr       */
+/*   Updated: 2021/02/08 19:18:32 by hjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	clean_table(t_table *table, t_philo *philos)
 	while (i < table->nbr_philos)
 	{
 		pthread_mutex_destroy(&table->fork[i]);
-		pthread_mutex_destroy(&philos[i].lock);
+		// pthread_mutex_destroy(&philos[i].lock);
 		i++;
 	}
 	pthread_mutex_destroy(&table->write_msg);

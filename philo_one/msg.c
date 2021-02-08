@@ -6,7 +6,7 @@
 /*   By: hjung <hjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 23:16:08 by hjung             #+#    #+#             */
-/*   Updated: 2021/02/08 15:23:15 by hjung            ###   ########.fr       */
+/*   Updated: 2021/02/08 19:18:24 by hjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ int		msg(t_philo *philo, int msg, unsigned long current_time)
 	if (msg == EATING)
 	{
 		printf(" is eating\n");
-		pthread_mutex_lock(&philo->lock);
+		// pthread_mutex_lock(&philo->lock);
 		philo->last_meal = current_time;
-		pthread_mutex_unlock(&philo->lock);
+		// pthread_mutex_unlock(&philo->lock);
 	}
 	(msg == SLEEPING) && printf(" is sleeping\n");
 	(msg == THINKING) && printf(" is thinking\n");

@@ -6,7 +6,7 @@
 /*   By: hjung <hjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/07 16:06:56 by hjung             #+#    #+#             */
-/*   Updated: 2021/02/08 17:55:54 by hjung            ###   ########.fr       */
+/*   Updated: 2021/02/08 19:17:45 by hjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int			init_table(t_table *table, t_philo *philos)
 	while (i < table->nbr_philos)
 	{
 		pthread_mutex_init(&table->fork[i], NULL);
-		pthread_mutex_init(&philos[i].lock, NULL);
+		// pthread_mutex_init(&philos[i].lock, NULL);
 		philos[i].table = table;
 		philos[i].nbr = i;
 		philos[i].cnt_eat = 0;
