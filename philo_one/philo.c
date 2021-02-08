@@ -6,7 +6,7 @@
 /*   By: hjung <hjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/07 16:46:29 by hjung             #+#    #+#             */
-/*   Updated: 2021/02/08 15:11:15 by hjung            ###   ########.fr       */
+/*   Updated: 2021/02/08 15:29:48 by hjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	*philo_act(void *phi)
 	pthread_create(&tid, NULL, philo_monitor, philo);	// 철학자 개인 스레드 안에서 moniter 스레드를 생성
 	while (1)
 	{
-		if (eat(philo))
+		if (eat(philo))									// 먹고 자고 생각하는 과정에 문제가 생기면 1이 return 되며 함수 다 반환됨.
 			break ;
 		if (msg(philo, SLEEPING, get_time()))
 			break ;

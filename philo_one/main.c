@@ -6,7 +6,7 @@
 /*   By: hjung <hjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 23:01:58 by hjung             #+#    #+#             */
-/*   Updated: 2021/02/07 16:09:40 by hjung            ###   ########.fr       */
+/*   Updated: 2021/02/08 15:33:20 by hjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,6 @@ int main(int argc, char *argv[])
 	if (!(philos = malloc(sizeof(t_philo) * table.nbr_philos)))
 		return (p_error("Error: malloc failed\n"));
 	init_table(&table, philos);
+	clean_table(&table, philos);
 	return (0);
 }

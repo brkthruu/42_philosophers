@@ -6,7 +6,7 @@
 /*   By: hjung <hjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 18:31:33 by hjung             #+#    #+#             */
-/*   Updated: 2021/02/08 14:40:42 by hjung            ###   ########.fr       */
+/*   Updated: 2021/02/08 15:30:34 by hjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,22 @@ void		vsleep(unsigned long itime)
 	** 여기서 ctime-stime 은 이 함수에 진입한 후 지난 시간을 계산할 것이고, 목표 대기시간인 itme 보다 커지면 반환된다.
 	** 이렇게 하면 정확히 쉬고싶은 만큼 쉴 수 있게 됨.
 	*/
+}
+
+void	clean_table(t_table *table, t_philo *philos)
+{
+	int		i;
+
+	i = 0;
+	while (i < table->nbr_philos)
+	{
+		pthread_mutex_destroy(&table->fork[i]);
+		pthread_mutex_destroy(&philos[i].lock);
+		i++;
+	}
+	pthread_mutex_destroy(&table->write_msg);
+	pthread_mutex_destroy(&table->m_eat);
+	pthread_mutex_destroy(&table->m_dead);
+	free(table->fork);
+	free(philos);
 }

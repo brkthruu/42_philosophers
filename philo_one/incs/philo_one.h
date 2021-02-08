@@ -6,7 +6,7 @@
 /*   By: hjung <hjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 23:03:24 by hjung             #+#    #+#             */
-/*   Updated: 2021/02/08 15:13:55 by hjung            ###   ########.fr       */
+/*   Updated: 2021/02/08 15:30:49 by hjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,11 @@ void				init_philo(t_philo *philos);
 void				*philo_act(void *phi);
 void				*philo_monitor(void *phi);
 int					eat(t_philo *philo);
-
+int					msg(t_philo *philo, int msg, unsigned long current_time);
 int					ft_atoi(const char *str);
 unsigned long		get_time(void);
 void				vsleep(unsigned long itime);
-
+void				clean_table(t_table *table, t_philo *philos);
 int					p_error(char *str);
 
 #endif
