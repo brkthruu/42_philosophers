@@ -6,12 +6,12 @@
 #    By: hjung <hjung@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/07 00:06:15 by hjung             #+#    #+#              #
-#    Updated: 2021/02/09 12:02:11 by hjung            ###   ########.fr        #
+#    Updated: 2021/02/10 18:47:59 by hjung            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
-NAME = philo_one
+NAME = philo_two
 SRCS =	main.c \
 		parse.c \
 		init.c \

@@ -6,13 +6,13 @@
 /*   By: hjung <hjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/07 16:06:56 by hjung             #+#    #+#             */
-/*   Updated: 2021/02/10 18:28:22 by hjung            ###   ########.fr       */
+/*   Updated: 2021/02/10 18:55:35 by hjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo_one.h"
+#include "philo_two.h"
 
-void	init_philo(t_philo *philos)
+void		init_philo(t_philo *philos)
 {
 	int		i;
 
@@ -31,36 +31,42 @@ void	init_philo(t_philo *philos)
 	}
 }
 
-static void	assign_fork(t_philo *philo, int idx)	// 여기선 잡을 수 있는 포크를 할당만 하는거지 포크를 잡는 것은 아님
+void		clear_sem(void)
 {
-	philo->fork1 = idx - 1;							//철학자는 자신의 오른쪽 포크를 먼저 할당받고
-	if (idx == 0)									// 첫번째 철학자면 마지막번호의 포크를 할당.
-		philo->fork1 = philo->table->nbr_philos - 1;
-	philo->fork2 = idx;								// 그다음 자신의 왼쪽 포크를 할당 받음.
-}	
+	sem_unlink("/enter");
+	sem_unlink("/fork");
+	sem_unlink("/write_msg");
+	sem_unlink("/m_eat");
+	sem_unlink("/m_dead");
+}
+
+void		init_sem(t_table *table)
+{
+	table->enter = sem_open("/enter", O_CREAT | O_EXCL, 0644,
+		table->nbr_philos / 2);
+	table->fork = sem_open("/fork", O_CREAT | O_EXCL, 0644, table->nbr_philos);
+	table->write_msg = sem_open("/write_msg", O_CREAT | O_EXCL, 0644, 1);
+	table->m_eat = sem_open("/m_eat", O_CREAT | O_EXCL, 0644, 1);
+	table->m_dead = sem_open("/m_dead", O_CREAT | O_EXCL, 0644, 1);
+}
 
 int			init_table(t_table *table, t_philo *philos)
 {
 	int		i;
-	
+
 	i = 0;
-	if (!(table->fork = malloc(sizeof(pthread_mutex_t) * table->nbr_philos)))
-		return(p_error("Error: malloc failed\n"));
 	while (i < table->nbr_philos)
 	{
-		pthread_mutex_init(&table->fork[i], NULL);
 		philos[i].table = table;
 		philos[i].nbr = i;
 		philos[i].cnt_eat = 0;
-		assign_fork(&philos[i], i);
 		i++;
 	}
-	pthread_mutex_init(&table->write_msg, NULL);
-	pthread_mutex_init(&table->m_eat, NULL);
-	pthread_mutex_init(&table->m_dead, NULL);
+	init_sem(table);
 	table->tot_eat = 0;
 	table->is_dead = 0;
 	table->base_time = get_time();
+	clear_sem();
 	init_philo(philos);
 	return (0);
 }
