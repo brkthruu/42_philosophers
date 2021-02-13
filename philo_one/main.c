@@ -6,13 +6,13 @@
 /*   By: hjung <hjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 23:01:58 by hjung             #+#    #+#             */
-/*   Updated: 2021/02/08 15:33:20 by hjung            ###   ########.fr       */
+/*   Updated: 2021/02/13 10:25:30 by hjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_one.h"
 
-int main(int argc, char *argv[])
+int	main(int argc, char *argv[])
 {
 	t_table		table;
 	t_philo		*philos;

@@ -6,7 +6,7 @@
 /*   By: hjung <hjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 23:33:32 by hjung             #+#    #+#             */
-/*   Updated: 2021/02/08 15:09:44 by hjung            ###   ########.fr       */
+/*   Updated: 2021/02/13 10:25:45 by hjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int	parse_num(char *str)
 {
 	int		i;
 	int		num;
-	
+
 	i = 0;
 	while (str[i])
 	{

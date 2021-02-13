@@ -6,13 +6,13 @@
 /*   By: hjung <hjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/07 16:06:56 by hjung             #+#    #+#             */
-/*   Updated: 2021/02/12 12:59:35 by hjung            ###   ########.fr       */
+/*   Updated: 2021/02/13 10:23:56 by hjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_one.h"
 
-void	init_philo(t_philo *philos)
+void		init_philo(t_philo *philos)
 {
 	int		i;
 
@@ -31,21 +31,21 @@ void	init_philo(t_philo *philos)
 	}
 }
 
-static void	assign_fork(t_philo *philo, int idx)	// 여기선 잡을 수 있는 포크를 할당만 하는거지 포크를 잡는 것은 아님
+static void	assign_fork(t_philo *philo, int idx)
 {
-	philo->fork1 = idx - 1;							//철학자는 자신의 오른쪽 포크를 먼저 할당받고
-	if (idx == 0)									// 첫번째 철학자면 마지막번호의 포크를 할당.
+	philo->fork1 = idx - 1;
+	if (idx == 0)
 		philo->fork1 = philo->table->nbr_philos - 1;
-	philo->fork2 = idx;								// 그다음 자신의 왼쪽 포크를 할당 받음.
-}	
+	philo->fork2 = idx;
+}
 
 int			init_table(t_table *table, t_philo *philos)
 {
 	int		i;
-	
+
 	i = 0;
 	if (!(table->fork = malloc(sizeof(pthread_mutex_t) * table->nbr_philos)))
-		return(p_error("Error: malloc failed\n"));
+		return (p_error("Error: malloc failed\n"));
 	while (i < table->nbr_philos)
 	{
 		pthread_mutex_init(&table->fork[i], NULL);

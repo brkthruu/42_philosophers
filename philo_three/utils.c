@@ -6,7 +6,7 @@
 /*   By: hjung <hjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 16:46:44 by hjung             #+#    #+#             */
-/*   Updated: 2021/02/12 18:31:09 by hjung            ###   ########.fr       */
+/*   Updated: 2021/02/13 10:29:31 by hjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ unsigned long	get_time(void)
 	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
 }
 
-void				vsleep(unsigned long itime)
+void			vsleep(unsigned long itime)
 {
 	unsigned long	stime;
 	unsigned long	ctime;
@@ -59,7 +59,7 @@ void				vsleep(unsigned long itime)
 	}
 }
 
-void		close_sem(t_table *table)
+void			close_sem(t_table *table)
 {
 	sem_close(table->enter);
 	sem_close(table->fork);

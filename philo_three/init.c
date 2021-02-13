@@ -6,7 +6,7 @@
 /*   By: hjung <hjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 12:49:19 by hjung             #+#    #+#             */
-/*   Updated: 2021/02/12 13:21:58 by hjung            ###   ########.fr       */
+/*   Updated: 2021/02/13 10:40:47 by hjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int			init_table(t_table *table, t_philo *philos)
 	while (i < table->nbr_philos)
 	{
 		philos[i].table = table;
-		philos[i].nbr = i;
+		philos[i].nbr = i + 1;
 		philos[i].cnt_eat = 0;
 		i++;
 	}

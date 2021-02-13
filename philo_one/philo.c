@@ -6,7 +6,7 @@
 /*   By: hjung <hjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/07 16:46:29 by hjung             #+#    #+#             */
-/*   Updated: 2021/02/08 18:57:05 by hjung            ###   ########.fr       */
+/*   Updated: 2021/02/13 10:26:19 by hjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ void	*philo_act(void *phi)
 	pthread_t	tid;
 
 	philo = (t_philo *)phi;
-	if (philo->nbr % 2 == 0)							// 짝수 철학자는 잠시 쉬세요.
+	if (philo->nbr % 2 == 0)
 		vsleep(1);
-	pthread_create(&tid, NULL, philo_monitor, philo);	// 철학자 개인 스레드 안에서 moniter 스레드를 생성
+	pthread_create(&tid, NULL, philo_monitor, philo);
 	while (1)
 	{
-		if (eat(philo))									// 먹고 자고 생각하는 과정에 문제가 생기면 1이 return 되며 함수 다 반환됨.
+		if (eat(philo))
 			break ;
 		if (msg(philo, SLEEPING, get_time()))
 			break ;
@@ -35,10 +35,6 @@ void	*philo_act(void *phi)
 	return (NULL);
 }
 
-/* 무엇을 모니터하는 함수냐면
-** 밥을 최소 횟수만큼 다 먹었는지
-** 마지막으로 식사를 시작한 시간부터 지금까지 시간을 계산해서 죽을지 살지 결정
-*/
 void	*philo_monitor(void *phi)
 {
 	t_philo			*philo;
@@ -72,9 +68,9 @@ int		eat(t_philo *philo)
 
 	table = philo->table;
 	pthread_mutex_lock(&table->fork[philo->fork1]);
-	msg(philo, TAKEN_FORK, get_time());					//오른쪽 포크 집기
+	msg(philo, TAKEN_FORK, get_time());
 	pthread_mutex_lock(&table->fork[philo->fork2]);
-	msg(philo, TAKEN_FORK, get_time());					//왼쪽 포크 집기
+	msg(philo, TAKEN_FORK, get_time());
 	msg(philo, EATING, get_time());
 	vsleep(table->time_to_eat);
 	pthread_mutex_unlock(&table->fork[philo->fork1]);
