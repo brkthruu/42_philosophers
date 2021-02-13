@@ -6,7 +6,7 @@
 /*   By: hjung <hjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 16:54:24 by hjung             #+#    #+#             */
-/*   Updated: 2021/02/13 16:06:32 by hjung            ###   ########.fr       */
+/*   Updated: 2021/02/13 17:47:17 by hjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int		kill_process(t_philo *philos)
 		kill(philos[i].pid, SIGKILL);
 		i++;
 	}
+	sem_post(philos->table->write_msg);
 	sem_wait(philos->table->write_msg);
 	printf("All process killed\n");
 	sem_post(philos->table->write_msg);

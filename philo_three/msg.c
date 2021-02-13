@@ -6,7 +6,7 @@
 /*   By: hjung <hjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 16:49:34 by hjung             #+#    #+#             */
-/*   Updated: 2021/02/12 16:52:14 by hjung            ###   ########.fr       */
+/*   Updated: 2021/02/13 17:48:34 by hjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,11 @@ int		msg(t_philo *philo, int msg, unsigned long current_time)
 	}
 	(msg == SLEEPING) && printf(" is sleeping\n");
 	(msg == THINKING) && printf(" is thinking\n");
-	(msg == DEAD) && printf(" died\n");
+	if (msg == DEAD)
+	{
+		printf(" died\n");
+		return (1);
+	}
 	sem_post(table->write_msg);
 	return (0);
 }
